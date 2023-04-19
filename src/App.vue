@@ -7,6 +7,8 @@
 </template>
 
 <script lang="ts" setup>
-  import ScaleBox from 'scale-box'
-  import 'scale-box/dist/style.css'
+  // import ScaleBox from 'scale-box'
+  // import 'scale-box/dist/style.css'
+  import "./assets/color-dark.css"; 
+  import "./assets/main.css"; 
 </script>

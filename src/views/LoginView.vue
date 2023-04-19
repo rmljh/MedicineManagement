@@ -1,7 +1,7 @@
 <!-- 药物管理平台登录界面 -->
 <template>
   <div>
-    <div class="loginPage">
+    <div class="loginView">
       <!-- 登录 -->
       <div class="loginBox">
         <p class="loginTitle">药品全过程防伪溯源区块链应用管理系统</p>
@@ -68,7 +68,7 @@ function loginHandle() {
           type: 'success' 
         })
         // store.commit
-        router.push({ path: '/homepage'})
+        router.push({ path: '/home'})
       }
     })
 }
@@ -88,7 +88,7 @@ function cancelHandle() {
 </script>
 
 <style scoped>
-  /* .loginPage {
+  /* .loginView {
     position: absolute;
     width: 100%;
     height: 100%;
