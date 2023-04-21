@@ -60,14 +60,14 @@ function fullScreenHandle() {
 
 <style scoped>
 .pageHeader {
-  position: relative;
-  box-sizing: border-box;
-  /* width: 100%; */
+  position: absolute;
+  width: 100%;
   height: 70px;
   color: white;
+  background-color: #0e5889;
 }
 
-.collapseButton {
+ .collapseButton {
   float: left;
   padding: 0 20px;
   line-height: 70px;
@@ -80,6 +80,7 @@ function fullScreenHandle() {
   width: auto;
   line-height: 70px;
   font-size: 22px;
+  background-color: #0e5889;
 }
 
 .rightBox {
@@ -103,5 +104,6 @@ function fullScreenHandle() {
 
 .userName {
   margin-left: 10px;
+  color:aliceblue
 }
 </style>

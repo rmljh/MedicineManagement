@@ -4,13 +4,21 @@
     <div class="loginView">
       <!-- 登录 -->
       <div class="loginBox">
+        <br>
+        <br>
         <p class="loginTitle">药品全过程防伪溯源区块链应用管理系统</p>
+        <br>
         <div class="loginForm">
-          <el-input placeholder="用户名"     :prefix-icon="userIcon" v-model="pageInfo.username"/>
-          <el-input placeholder="密&#8195码" :prefix-icon="pswdIcon" v-model="pageInfo.password"/>
+          <el-input class="logininput" placeholder="用户名"     :prefix-icon="userIcon" v-model="pageInfo.username"/>
+          <br>
+          <br>
+          <el-input class="logininput" placeholder="密&#8195码" :prefix-icon="pswdIcon" v-model="pageInfo.password"/>
         </div>
-        <el-row class="loginButton"><el-button type="primary" @click="loginHandle" >登录</el-button></el-row>
-        <el-row class="loginButton"><el-button @click="pageInfo.signInFlag=true">注册</el-button></el-row>
+        <br>
+        <br>
+        <el-row><el-button  class="button1" type="primary" @click="loginHandle" style="display:block;margin:0 auto">登录</el-button></el-row>
+        <br>
+        <el-row><el-button  class="button2" type="primary" @click="pageInfo.signInFlag=true" style="display:block;margin:0 auto">注册</el-button></el-row>
       </div>
       <!-- 注册 -->
       <div class="signInBox">
@@ -21,11 +29,19 @@
               <el-select v-model="pageInfo.userRole" placeholder="用户类型" style="width: 100%">
                 <el-option v-for="item in pageInfo.roleOption" :key="item" :value="item"></el-option>
               </el-select>
+              <br>
+              <br>
               <el-input placeholder="用户名"     :prefix-icon="userIcon" v-model="pageInfo.registerUsername"/>
+              <br>
+              <br>
               <el-input placeholder="密&#8195码" :prefix-icon="pswdIcon" v-model="pageInfo.registerPassword"/>
           </div>
-          <el-row class="signInButton"><el-button type="primary" @click="signInHandle" >确认</el-button></el-row>
-          <el-row class="signInButton"><el-button @click="cancelHandle">取消</el-button></el-row>
+          <br>
+          <br>
+          <el-row><el-button class="button3" type="primary" @click="signInHandle" >确认</el-button></el-row>
+          <el-row><el-button class="button4" type="primary" @click="cancelHandle">取消</el-button></el-row>
+          <br>
+          <br>
         </el-dialog>
       </div>
     </div>
@@ -88,24 +104,66 @@ function cancelHandle() {
 </script>
 
 <style scoped>
-  /* .loginView {
+  .loginView {
     position: absolute;
     width: 100%;
     height: 100%;
-  } */
+    background-image: url(D:\Nodejs\MedicineManagement\src\assets\img\medical.jpg);
+    background-size: 110%;
+  } 
   .loginBox {
     position: absolute;
+    background-color: aliceblue;
+    border-radius: 25px;
     left: 50%;
     top: 50%;
-    width: 360px;
+    width: 400px;
+    height: 350px;
     margin: -190px 0 0 -175px;
     overflow: hidden;
   }
   .loginTitle {
     text-align: center;
     font-size: 20px;
+    color: #0e5889;
+    font-weight:bolder;
   }
-  .el-button {
-    width: 100%;
+  .button1 {
+    width: 70%;
+    background-color:#0e5889;
+  }
+  .button2 {
+    width: 70%;
+    background-color:rgb(180, 82, 78);
+  }
+  .button3 {
+    width: 20%;
+    background-color:#0e5889;
+    position: absolute;
+    left: 10%;
+    top: 70%;
+  }
+  .button4 {
+    width: 20%;
+    background-color:rgb(180, 82, 78);
+    position: absolute;
+    left: 60%;
+    top: 70%;
+  }
+  .logininput {
+    width:80%;
+    position: relative;
+    width: 300px;
+    height: 35px;
+    left: 50px;
+    top: 0;
+  }
+  .signInBox{
+    position: absolute;
+    width:400px;
+    height: 400px;
+    border-radius: 25px;
+    left: 50%;
+    top: 50%;
   }
 </style>
