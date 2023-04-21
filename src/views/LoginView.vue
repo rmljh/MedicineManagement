@@ -144,8 +144,8 @@ function cancelHandle() {
     background-color:#0e5889;
   }
   .button2 {
-    width: 70%;
-    background-color:rgb(180, 82, 78);
+    /* width: 70%;
+    background-color:rgb(180, 82, 78); */
   }
   .button3 {
     width: 20%;
