@@ -4,7 +4,7 @@
       <el-header><pageHeader/></el-header>
       <el-container>
         <el-aside width="250px">Aside</el-aside>
-        <el-main :style="pageInfo.defaultStyle">Main</el-main>
+        <el-main :style="pageInfo.defaultStyle"><router-view/></el-main>
       </el-container>
     </el-container>
   </div>
@@ -15,7 +15,7 @@ import pageHeader from '@/components/HomeView/PageHeader.vue'
 import { onBeforeMount, reactive } from 'vue';
 
 const pageInfo = reactive({
-  defaultStyle : {
+  defaultStyle : {  // 使el-main铺满页面
     height: '',
   }
 })

@@ -21,8 +21,9 @@
               <el-select v-model="pageInfo.userRole" placeholder="用户类型" style="width: 100%">
                 <el-option v-for="item in pageInfo.roleOption" :key="item" :value="item"></el-option>
               </el-select>
-              <el-input placeholder="用户名"     :prefix-icon="userIcon" v-model="pageInfo.registerUsername"/>
-              <el-input placeholder="密&#8195码" :prefix-icon="pswdIcon" v-model="pageInfo.registerPassword"/>
+              <el-input placeholder="用户名"      :prefix-icon="userIcon" v-model="pageInfo.registerUsername"/>
+              <el-input placeholder="密&#8195码"  :prefix-icon="pswdIcon" v-model="pageInfo.registerPassword"/>
+              <el-input placeholder="厂商代码"    :prefix-icon=""/>
           </div>
           <el-row class="signInButton"><el-button type="primary" @click="signInHandle" >确认</el-button></el-row>
           <el-row class="signInButton"><el-button @click="cancelHandle">取消</el-button></el-row>
@@ -39,6 +40,7 @@ import {reactive} from 'vue'
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
+import store from '@/store';
 
 const router = useRouter();
 
@@ -50,6 +52,11 @@ const pageInfo = reactive({ // 用于存储页面所需上传或者需接收的�
   registerPassword: '',
   userRole: '',
   roleOption : ['生产商','经销商','管理员'],
+})
+
+const storeObj = reactive({
+  username: '',
+  userRole: '',
 })
 
 function loginHandle() {
@@ -67,7 +74,9 @@ function loginHandle() {
           message: '登录成功',
           type: 'success' 
         })
-        // store.commit
+        storeObj.username = pageInfo.username;
+        storeObj.userRole = pageInfo.userRole;
+        store.commit('storeUserInfo', storeObj);
         router.push({ path: '/home'})
       }
     })

@@ -1,7 +1,7 @@
 <!-- 系统页面头部 -->
 <template>
   <div class="pageHeader">
-    <div class="headerLeft">
+    <div class="leftBox">
       <!-- 折叠按钮 -->
       <div class="collapseButton" @click="collapseHandle">
         <i v-if="!pageInfo.collapseFlag"><el-icon><Expand /></el-icon></i>
@@ -38,22 +38,37 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { reactive, onBeforeMount } from 'vue'
 import fullScreenIcon from '~icons/gridicons/fullscreen'
 import fullScreenExitIcon from '~icons/gridicons/fullscreen-exit'
 import userAvatorUrl from '@/assets/img/img.jpg'
+import store from '@/store'
+
 const pageInfo = reactive({
   collapseFlag: false,
   fullScreenFlag: false,
   username: 'test',
 })
 
+const storeObj = reactive({
+  collapseFlag: false,
+  fullScreenFlag: false,
+})
+
+onBeforeMount(() => {
+  pageInfo.username = store.state.username
+})
+
 function collapseHandle() {
-  pageInfo.collapseFlag = !pageInfo.collapseFlag
+  pageInfo.collapseFlag = !pageInfo.collapseFlag;
+  storeObj.collapseFlag =  pageInfo.collapseFlag;
+  store.commit('storeHeaderFlag', storeObj);
 }
 
 function fullScreenHandle() {
-  pageInfo.fullScreenFlag = !pageInfo.fullScreenFlag
+  pageInfo.fullScreenFlag = !pageInfo.fullScreenFlag;
+  storeObj.fullScreenFlag =  pageInfo.fullScreenFlag;
+  store.commit('storeHeaderFlag', storeObj);
 }
 
 </script>
