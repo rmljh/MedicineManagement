@@ -4,7 +4,7 @@
       <el-header><pageHeader/></el-header>
       <el-container>
         <el-aside width="250px">Aside</el-aside>
-        <el-main :style="pageInfo.defaultStyle"><router-view/></el-main>
+        <el-main :style="pageInfo.defaultStyle"><RouterView /></el-main>
       </el-container>
     </el-container>
   </div>

@@ -21,10 +21,17 @@ const router = createRouter({
         {
           path: '/home',
           name: 'home',
-          component: () => import('../components/Test/test.vue')
-        }
+          component: () => import('@/components/test/mmktest.vue'),
+        },
+
       ]
-    }
+    },
+    {
+      path: '/mmktest',
+      name: 'mmktest',
+      component: () => import('../components/test/mmktest.vue'),
+    },
+
     // {
     //   path: '/main',
     //   component: () => import(/* webpackChunkName: "home" */ '../components/common/Home.vue'),
