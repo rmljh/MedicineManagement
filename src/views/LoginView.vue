@@ -27,14 +27,14 @@
         >
           <div class="signInForm">
               <el-select v-model="pageInfo.userRole" placeholder="用户类型" style="width: 100%">
+                <template #prefix>
+                  <el-icon><roleIcon /></el-icon>
+                </template>
                 <el-option v-for="item in pageInfo.roleOption" :key="item" :value="item"></el-option>
               </el-select>
-              <br>
-              <br>
-              <el-input placeholder="用户名"     :prefix-icon="userIcon" v-model="pageInfo.registerUsername"/>
-              <br>
-              <br>
-              <el-input placeholder="密&#8195码" :prefix-icon="pswdIcon" v-model="pageInfo.registerPassword"/>
+              <el-input placeholder="用&#8194户&#8194名"      :prefix-icon="userIcon" v-model="pageInfo.registerUsername"/>
+              <el-input placeholder="密&#8195&#8195码"  :prefix-icon="pswdIcon" v-model="pageInfo.registerPassword"/>
+              <el-input placeholder="厂商代码"    :prefix-icon="creditIcon" v-model="pageInfo.registerCreditNumber"/>
           </div>
           <br>
           <br>
@@ -51,10 +51,13 @@
 <script lang="ts" setup>
 import userIcon from '~icons/mingcute/user-1-line'
 import pswdIcon from '~icons/mdi/lock-outline'
+import creditIcon from '~icons/ph/user-list-light'
+import roleIcon from '~icons/ph/user-focus-light'
 import {reactive} from 'vue'
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
+import store from '@/store';
 
 const router = useRouter();
 
@@ -64,8 +67,14 @@ const pageInfo = reactive({ // 用于存储页面所需上传或者需接收的�
   signInFlag: false,
   registerUsername: '',
   registerPassword: '',
+  registerCreditNumber: '',
   userRole: '',
   roleOption : ['生产商','经销商','管理员'],
+})
+
+const storeObj = reactive({
+  username: '',
+  userRole: '',
 })
 
 function loginHandle() {
@@ -83,7 +92,9 @@ function loginHandle() {
           message: '登录成功',
           type: 'success' 
         })
-        // store.commit
+        storeObj.username = pageInfo.username;
+        storeObj.userRole = pageInfo.userRole;
+        store.commit('storeUserInfo', storeObj);
         router.push({ path: '/home'})
       }
     })

@@ -15,7 +15,7 @@ import pageHeader from '@/components/HomeView/PageHeader.vue'
 import { onBeforeMount, reactive } from 'vue';
 
 const pageInfo = reactive({
-  defaultStyle : {
+  defaultStyle : {  // 使el-main铺满页面
     height: '',
   }
 })
