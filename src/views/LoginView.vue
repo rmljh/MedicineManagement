@@ -19,11 +19,14 @@
         >
           <div class="signInForm">
               <el-select v-model="pageInfo.userRole" placeholder="用户类型" style="width: 100%">
+                <template #prefix>
+                  <el-icon><roleIcon /></el-icon>
+                </template>
                 <el-option v-for="item in pageInfo.roleOption" :key="item" :value="item"></el-option>
               </el-select>
-              <el-input placeholder="用户名"      :prefix-icon="userIcon" v-model="pageInfo.registerUsername"/>
-              <el-input placeholder="密&#8195码"  :prefix-icon="pswdIcon" v-model="pageInfo.registerPassword"/>
-              <el-input placeholder="厂商代码"    :prefix-icon=""/>
+              <el-input placeholder="用&#8194户&#8194名"      :prefix-icon="userIcon" v-model="pageInfo.registerUsername"/>
+              <el-input placeholder="密&#8195&#8195码"  :prefix-icon="pswdIcon" v-model="pageInfo.registerPassword"/>
+              <el-input placeholder="厂商代码"    :prefix-icon="creditIcon" v-model="pageInfo.registerCreditNumber"/>
           </div>
           <el-row class="signInButton"><el-button type="primary" @click="signInHandle" >确认</el-button></el-row>
           <el-row class="signInButton"><el-button @click="cancelHandle">取消</el-button></el-row>
@@ -36,6 +39,8 @@
 <script lang="ts" setup>
 import userIcon from '~icons/mingcute/user-1-line'
 import pswdIcon from '~icons/mdi/lock-outline'
+import creditIcon from '~icons/ph/user-list-light'
+import roleIcon from '~icons/ph/user-focus-light'
 import {reactive} from 'vue'
 import axios from 'axios';
 import { useRouter } from 'vue-router';
@@ -50,6 +55,7 @@ const pageInfo = reactive({ // 用于存储页面所需上传或者需接收的�
   signInFlag: false,
   registerUsername: '',
   registerPassword: '',
+  registerCreditNumber: '',
   userRole: '',
   roleOption : ['生产商','经销商','管理员'],
 })
