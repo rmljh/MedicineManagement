@@ -26,15 +26,15 @@
           :modal='false' :close-delay="10" title="新用户注册"
         >
           <div class="signInForm">
-              <el-select v-model="pageInfo.userRole" placeholder="用户类型" style="width: 100%">
+              <el-select   class="registerinput" v-model="pageInfo.userRole" placeholder="用户类型" style="width: 100%">
                 <template #prefix>
                   <el-icon><roleIcon /></el-icon>
                 </template>
                 <el-option v-for="item in pageInfo.roleOption" :key="item" :value="item"></el-option>
               </el-select>
-              <el-input placeholder="用&#8194户&#8194名"      :prefix-icon="userIcon" v-model="pageInfo.registerUsername"/>
-              <el-input placeholder="密&#8195&#8195码"  :prefix-icon="pswdIcon" v-model="pageInfo.registerPassword"/>
-              <el-input placeholder="厂商代码"    :prefix-icon="creditIcon" v-model="pageInfo.registerCreditNumber"/>
+              <el-input class="registerinput" placeholder="用&#8194户&#8194名"      :prefix-icon="userIcon" v-model="pageInfo.registerUsername"/>
+              <el-input class="registerinput" placeholder="密&#8195&#8195码"  :prefix-icon="pswdIcon" v-model="pageInfo.registerPassword"/>
+              <el-input class="registerinput" placeholder="厂商代码"    :prefix-icon="creditIcon" v-model="pageInfo.registerCreditNumber"/>
           </div>
           <br>
           <br>
@@ -176,5 +176,8 @@ function cancelHandle() {
     border-radius: 25px;
     left: 50%;
     top: 50%;
+  }
+  .registerinput{
+    margin:5px ;
   }
 </style>
