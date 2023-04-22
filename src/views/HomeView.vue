@@ -1,7 +1,7 @@
 <template>
   <div class="homeView">
     <el-container>
-      <el-header><pageHeader/></el-header>
+      <el-header class="header"><pageHeader/></el-header>
       <el-container>
         <el-aside width="250px">Aside</el-aside>
         <el-main :style="pageInfo.defaultStyle"><RouterView /></el-main>
@@ -27,4 +27,7 @@ onBeforeMount(() => {
 </script>
 
 <style scoped>
+.header {
+  background-color: #0e5889;
+}
 </style>
