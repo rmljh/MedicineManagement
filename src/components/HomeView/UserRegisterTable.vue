@@ -1,14 +1,15 @@
+<!-- 用户注册申请表 -->
 <template>
     <div>
         <el-container>
-            <el-header style="background-color: white;">
+            <el-header style="background-color: white; height: 10%;">
                 <el-row>
                     <el-col :span="10"></el-col>
                     <el-col :span="4">用户注册表</el-col>
                 </el-row>
             </el-header>
             <el-main>
-                <el-table :data="r.userTable" border style="width: 1000px" >
+                <el-table :data="r.userTable" border style="width: 100%" >
                     <el-table-column label="用户名" prop="username"/>
                     <el-table-column label="账号" prop="userAccount"/>
                     <el-table-column label="厂商代码" prop="companyId"/>
