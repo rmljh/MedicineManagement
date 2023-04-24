@@ -4,20 +4,12 @@
     <div class="loginView">
       <!-- 登录 -->
       <div class="loginBox">
-        <br>
-        <br>
         <p class="loginTitle">药品全过程防伪溯源区块链应用管理系统</p>
-        <br>
         <div class="loginForm">
           <el-input class="logininput" placeholder="用户名"     :prefix-icon="userIcon" v-model="pageInfo.username"/>
-          <br>
-          <br>
           <el-input class="logininput" placeholder="密&#8195码" :prefix-icon="pswdIcon" v-model="pageInfo.password"/>
         </div>
-        <br>
-        <br>
         <el-row><el-button  class="button1" type="primary" @click="loginHandle" style="display:block;margin:0 auto">登录</el-button></el-row>
-        <br>
         <el-row><el-button  class="button2" type="primary" @click="pageInfo.signInFlag=true" style="display:block;margin:0 auto">注册</el-button></el-row>
       </div>
       <!-- 注册 -->
@@ -36,12 +28,8 @@
               <el-input class="registerinput" placeholder="密&#8195&#8195码"  :prefix-icon="pswdIcon" v-model="pageInfo.registerPassword"/>
               <el-input class="registerinput" placeholder="厂商代码"    :prefix-icon="creditIcon" v-model="pageInfo.registerCreditNumber"/>
           </div>
-          <br>
-          <br>
           <el-row><el-button class="button3" type="primary" @click="signInHandle" >确认</el-button></el-row>
           <el-row><el-button class="button4" type="primary" @click="cancelHandle">取消</el-button></el-row>
-          <br>
-          <br>
         </el-dialog>
       </div>
     </div>

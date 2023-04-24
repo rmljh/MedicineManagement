@@ -39,7 +39,7 @@ export default createStore({
     state: storeMaker({
         username: '',
         userRole: '',
-        collapseFlag: false ,
+        collapseFlag: true,
         fullScreenFlag: false, 
     }),
     mutations: {

@@ -4,7 +4,7 @@
     <div class="leftBox">
       <!-- 折叠按钮 -->
       <div class="collapseButton" @click="collapseHandle">
-        <i v-if="!pageInfo.collapseFlag"><el-icon><Expand /></el-icon></i>
+        <i v-if="pageInfo.collapseFlag"><el-icon><Expand /></el-icon></i>
         <i v-else><el-icon><Fold /></el-icon></i>
       </div>
 
@@ -45,13 +45,13 @@ import userAvatorUrl from '@/assets/img/img.jpg'
 import store from '@/store'
 
 const pageInfo = reactive({
-  collapseFlag: false,
+  collapseFlag: true,
   fullScreenFlag: false,
   username: 'test',
 })
 
 const storeObj = reactive({
-  collapseFlag: false,
+  collapseFlag: true,
   fullScreenFlag: false,
 })
 
@@ -79,7 +79,6 @@ function fullScreenHandle() {
   width: 100%;
   height: 70px;
   color: white;
-  background-color: #0e5889;
 }
 
  .collapseButton {
@@ -95,7 +94,6 @@ function fullScreenHandle() {
   width: auto;
   line-height: 70px;
   font-size: 22px;
-  background-color: #0e5889;
 }
 
 .rightBox {

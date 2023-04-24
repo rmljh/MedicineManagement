@@ -3,7 +3,7 @@
     <el-container>
       <el-header class="header"><pageHeader/></el-header>
       <el-container>
-        <el-aside width="250px">Aside</el-aside>
+        <el-aside width="250px"><pageAside/></el-aside>
         <el-main :style="pageInfo.defaultStyle"><RouterView /></el-main>
       </el-container>
     </el-container>
@@ -12,6 +12,7 @@
 
 <script setup lang="ts">
 import pageHeader from '@/components/HomeView/PageHeader.vue'
+import pageAside  from '@/components/HomeView/PageAside.vue'
 import { onBeforeMount, reactive } from 'vue';
 
 const pageInfo = reactive({
