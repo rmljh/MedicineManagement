@@ -1,10 +1,10 @@
 <!-- 系统页面头部 -->
 <template>
   <div class="pageHeader">
-    <div class="headerLeft">
+    <div class="leftBox">
       <!-- 折叠按钮 -->
       <div class="collapseButton" @click="collapseHandle">
-        <i v-if="!pageInfo.collapseFlag"><el-icon><Expand /></el-icon></i>
+        <i v-if="pageInfo.collapseFlag"><el-icon><Expand /></el-icon></i>
         <i v-else><el-icon><Fold /></el-icon></i>
       </div>
 
@@ -38,36 +38,50 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { reactive, onBeforeMount } from 'vue'
 import fullScreenIcon from '~icons/gridicons/fullscreen'
 import fullScreenExitIcon from '~icons/gridicons/fullscreen-exit'
 import userAvatorUrl from '@/assets/img/img.jpg'
+import store from '@/store'
+
 const pageInfo = reactive({
-  collapseFlag: false,
+  collapseFlag: true,
   fullScreenFlag: false,
   username: 'test',
 })
 
+const storeObj = reactive({
+  collapseFlag: true,
+  fullScreenFlag: false,
+})
+
+onBeforeMount(() => {
+  pageInfo.username = store.state.username
+})
+
 function collapseHandle() {
-  pageInfo.collapseFlag = !pageInfo.collapseFlag
+  pageInfo.collapseFlag = !pageInfo.collapseFlag;
+  storeObj.collapseFlag =  pageInfo.collapseFlag;
+  store.commit('storeHeaderFlag', storeObj);
 }
 
 function fullScreenHandle() {
-  pageInfo.fullScreenFlag = !pageInfo.fullScreenFlag
+  pageInfo.fullScreenFlag = !pageInfo.fullScreenFlag;
+  storeObj.fullScreenFlag =  pageInfo.fullScreenFlag;
+  store.commit('storeHeaderFlag', storeObj);
 }
 
 </script>
 
 <style scoped>
 .pageHeader {
-  position: relative;
-  box-sizing: border-box;
-  /* width: 100%; */
+  position: absolute;
+  width: 100%;
   height: 70px;
   color: white;
 }
 
-.collapseButton {
+ .collapseButton {
   float: left;
   padding: 0 20px;
   line-height: 70px;
@@ -103,5 +117,6 @@ function fullScreenHandle() {
 
 .userName {
   margin-left: 10px;
+  color:aliceblue
 }
 </style>

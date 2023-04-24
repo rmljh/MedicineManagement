@@ -25,9 +25,14 @@
     "vuex": "^4.1.0"
   },
   "devDependencies": {
+    "@iconify-json/covid": "^1.1.1",
+    "@iconify-json/foundation": "^1.1.4",
+    "@iconify-json/game-icons": "^1.1.2",
     "@iconify-json/gridicons": "^1.1.10",
+    "@iconify-json/ic": "^1.1.13",
     "@iconify-json/mdi": "^1.1.50",
     "@iconify-json/mingcute": "^1.1.5",
+    "@iconify-json/ph": "^1.1.5",
     "@types/node": "^18.14.2",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/tsconfig": "^0.1.3",
