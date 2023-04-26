@@ -18,6 +18,7 @@
           :modal='false' :close-delay="10" title="新用户注册"
         >
           <!-- <div class="signInForm"> -->
+            <div class="innerBox">
               <el-select   class="registerinput" v-model="pageInfo.userRole" placeholder="用户类型" style="width: 100%">
                 <template #prefix>
                   <el-icon><roleIcon /></el-icon>
@@ -28,11 +29,10 @@
               <el-input class="registerinput" placeholder="密&#8195&#8195码"  :prefix-icon="pswdIcon" v-model="pageInfo.registerPassword"/>
               <el-input class="registerinput" placeholder="厂商代码"    :prefix-icon="creditIcon" v-model="pageInfo.registerCreditNumber"/>
           <!-- </div> -->
-          <br>
-          <br>
+          
           <el-row><el-button class="button3" type="primary" @click="signInHandle" >确认</el-button></el-row>
           <el-row><el-button class="button4" type="primary" @click="cancelHandle">取消</el-button></el-row>
-          <br>
+                 </div>
         </el-dialog>
       </div>
     </div>
@@ -150,12 +150,14 @@ function cancelHandle() {
     background-color:#0e5889;
     position: absolute;
     left: 15%;
+    top:15px;
   }
   .button4 {
     width: 20%;
     background-color:rgb(180, 82, 78);
     position: absolute;
     left: 65%;
+    top:15px;
   }
   .logininput {
     width:80%;
@@ -166,10 +168,11 @@ function cancelHandle() {
     top: 0;
     margin:12px ;
   }
-  .signinBox {
-    position: absolute;
-    width: 300px;
-    height: 35px;
+
+
+  .innerBox {
+    width: 98%;
+    height: 200px;
   }
 
   .registerinput{
