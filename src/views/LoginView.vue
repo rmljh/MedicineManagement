@@ -123,17 +123,24 @@ function cancelHandle() {
   }
   .loginTitle {
     text-align: center;
-    font-size: 20px;
+    font-size: 19px;
     color: #0e5889;
     font-weight:bolder;
+    margin:25px ;
   }
   .button1 {
     width: 70%;
     background-color:#0e5889;
+    position: absolute;
+    left: 17%;
+    top: 15px;
   }
   .button2 {
     width: 70%;
     background-color:rgb(180, 82, 78);
+    position: absolute;
+    left: 17%;
+    top: 65px;
   }
   .button3 {
     width: 20%;
@@ -156,6 +163,7 @@ function cancelHandle() {
     height: 35px;
     left: 50px;
     top: 0;
+    margin:12px ;
   }
   .signInBox{
     position: absolute;
