@@ -112,7 +112,7 @@ function cancelHandle() {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url(D:\Nodejs\MedicineManagement\src\assets\img\medical.jpg);
+    background-image: url("@/assets/img/medical.jpg");
     background-size: 110%;
   } 
   .loginBox {
