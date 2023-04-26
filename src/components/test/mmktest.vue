@@ -1,7 +1,7 @@
 <template>
     <!-- <UserRegisterTable /> -->
     <!-- <MedicineRegisterTable/> -->
-    <!-- <SalesBarChart /> -->
+    <SalesBarChart />
     <!-- <MedicineTraceTable /> -->
 </template>
 <script lang="ts" setup>
