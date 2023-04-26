@@ -13,11 +13,11 @@
         <el-row><el-button  class="button2" type="primary" @click="pageInfo.signInFlag=true" style="display:block;margin:0 auto">注册</el-button></el-row>
       </div>
       <!-- 注册 -->
-      <div class="signInBox">
+      <div class="signinBox">
         <el-dialog width="30%" v-model="pageInfo.signInFlag"  center :show-close="false"
           :modal='false' :close-delay="10" title="新用户注册"
         >
-          <div class="signInForm">
+          <!-- <div class="signInForm"> -->
               <el-select   class="registerinput" v-model="pageInfo.userRole" placeholder="用户类型" style="width: 100%">
                 <template #prefix>
                   <el-icon><roleIcon /></el-icon>
@@ -27,9 +27,12 @@
               <el-input class="registerinput" placeholder="用&#8194户&#8194名"      :prefix-icon="userIcon" v-model="pageInfo.registerUsername"/>
               <el-input class="registerinput" placeholder="密&#8195&#8195码"  :prefix-icon="pswdIcon" v-model="pageInfo.registerPassword"/>
               <el-input class="registerinput" placeholder="厂商代码"    :prefix-icon="creditIcon" v-model="pageInfo.registerCreditNumber"/>
-          </div>
+          <!-- </div> -->
+          <br>
+          <br>
           <el-row><el-button class="button3" type="primary" @click="signInHandle" >确认</el-button></el-row>
           <el-row><el-button class="button4" type="primary" @click="cancelHandle">取消</el-button></el-row>
+          <br>
         </el-dialog>
       </div>
     </div>
@@ -146,15 +149,13 @@ function cancelHandle() {
     width: 20%;
     background-color:#0e5889;
     position: absolute;
-    left: 10%;
-    top: 70%;
+    left: 15%;
   }
   .button4 {
     width: 20%;
     background-color:rgb(180, 82, 78);
     position: absolute;
-    left: 60%;
-    top: 70%;
+    left: 65%;
   }
   .logininput {
     width:80%;
@@ -165,15 +166,13 @@ function cancelHandle() {
     top: 0;
     margin:12px ;
   }
-  .signInBox{
+  .signinBox {
     position: absolute;
-    width:400px;
-    height: 400px;
-    border-radius: 25px;
-    left: 50%;
-    top: 50%;
+    width: 300px;
+    height: 35px;
   }
+
   .registerinput{
-    margin:5px ;
+    margin:4px ;
   }
 </style>
