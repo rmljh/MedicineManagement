@@ -19,7 +19,7 @@
                         <template v-slot="scope">
                             <el-row>
                                 <el-col :span="8" >
-                                    <ConfirmButton v-if="scope.row.medicine_id != ''" />
+                                    <ConfirmButton v-if="scope.row.medicine_id != ''" @click="admitHandle"/>
                                 </el-col>
                                 <el-col :span="8" >
                                     <DenyButton v-if="scope.row.medicine_id != ''" @click="denyHandle"/>
@@ -105,5 +105,12 @@ function deleteDialogDenyHandle() {
 
 function denyHandle() {
     deleteDialog.deleteDiaFlag = true
+}
+
+function admitHandle() {
+    ElMessage({
+        message: '药品上链成功',
+        type: 'success'
+    })
 }
 </script>

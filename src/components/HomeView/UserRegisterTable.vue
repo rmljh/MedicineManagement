@@ -16,7 +16,7 @@
                     <el-table-column label="用户类型" prop="userRole"/>
                     <el-table-column label="操作">
                         <template v-slot="scope">
-                            <el-row>
+                            <el-row>   
                                 <el-col :span="12">
                                     <ConfirmButton v-if="scope.row.userId != ''" />
                                 </el-col>
