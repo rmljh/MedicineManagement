@@ -98,3 +98,9 @@ const formData = reactive({
   transName: '',
 })
 </script>
+
+<style>
+.formBox {
+  height: 1000px;
+}
+</style>

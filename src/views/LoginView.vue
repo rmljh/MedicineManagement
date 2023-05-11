@@ -55,6 +55,7 @@ import store from '@/store';
 const router = useRouter();
 
 const pageInfo = reactive({ // 用于存储页面所需上传或者需接收的信息变量
+  userAccount: '',
   username: '',
   password: '',
   signInFlag: false,
@@ -66,6 +67,7 @@ const pageInfo = reactive({ // 用于存储页面所需上传或者需接收的�
 })
 
 const storeObj = reactive({
+  usreAccount: '',
   username: '',
   userRole: '',
 })
@@ -85,6 +87,7 @@ function loginHandle() {
           message: '登录成功',
           type: 'success'
         })
+        storeObj.usreAccount = pageInfo.userAccount;
         storeObj.username = pageInfo.username;
         storeObj.userRole = pageInfo.userRole;
         store.commit('storeUserInfo', storeObj);
