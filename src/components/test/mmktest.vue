@@ -4,6 +4,7 @@
     <SalesBarChart />
     <MedicineTraceTable />  
     <AdminTable />
+    <ProducerForm/>
 </template>
 <script lang="ts" setup>
 import MedicineTraceTable from '../HomeView/MedicineTraceTable.vue';

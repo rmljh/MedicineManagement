@@ -23,7 +23,11 @@ const router = createRouter({
           name: 'home',
           component: () => import('@/components/test/mmktest.vue'),
         },
-
+        {
+          path: '/medicinetrace',
+          name: 'medicinetrace',
+          component: () => import('@/components/HomeView/MedicineTraceTable.vue'),
+        },
       ]
     },
     {
