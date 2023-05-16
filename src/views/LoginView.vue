@@ -19,7 +19,7 @@
         >
           <!-- <div class="signInForm"> -->
             <div class="innerBox">
-              <el-select   class="registerinput" v-model="pageInfo.userRole" placeholder="用户类型" style="width: 100%">
+              <el-select   class="registerinput" v-model="pageInfo.registerUserRole" placeholder="用户类型" style="width: 100%">
                 <template #prefix>
                   <el-icon><roleIcon /></el-icon>
                 </template>
@@ -59,8 +59,10 @@ const pageInfo = reactive({ // 用于存储页面所需上传或者需接收的�
   registerUsername: '',
   registerPassword: '',
   registerCreditNumber: '',
+  registerUserRole: '',
+  registerUserRole1: '',
   userRole: '',
-  roleOption : ['生产商','经销商','管理员'],
+  roleOption : ['生产商','经销商'],
 })
 
 const storeObj = reactive({
@@ -71,7 +73,7 @@ const storeObj = reactive({
 
 function loginHandle() {
   // 向服务器发送登录请求，判断是否能成功登录
-  axios.post('/login', {username: pageInfo.username, password: pageInfo.password })
+  axios.get("http://175.178.68.139:8888/login?"+"username="+pageInfo.username+"&password="+pageInfo.password)
     .then(function(response) {
       console.log(response.data);
       if (response.data.code != 200) {
@@ -95,7 +97,31 @@ function loginHandle() {
 
 function signInHandle() {
   // 向服务器发送注册请求，判断是否能成功注册
-  axios.post('/register')
+  if (pageInfo.registerUserRole == "生产商") pageInfo.registerUserRole1 = "1"
+  if (pageInfo.registerUserRole == "经销商") pageInfo.registerUserRole1 = "2"
+  axios.post("http://175.178.68.139:8888/register?" + "userType=" + pageInfo.registerUserRole1+"&password="+pageInfo.registerPassword+"&account="+pageInfo.registerUsername)
+    .then(function(response) {
+      console.log(response.data);
+      if (response.data.code != 200) {
+        if(response.data.msg == 'account existed') {
+          ElMessage({
+          message: '注册失败！该用户名已存在',
+          type: 'error'
+          })
+        } else {
+          ElMessage({
+            message: '注册失败！',
+            type: 'error'
+          })
+        }
+      } else {
+        ElMessage({
+          message: '注册成功！',
+          type: 'success'
+        })
+        pageInfo.signInFlag = false
+      }
+    })
 }
 
 function cancelHandle() {
