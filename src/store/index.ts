@@ -37,6 +37,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
     state: storeMaker({
+        userAccount: '',
         username: '',
         userRole: '',
         collapseFlag: true,
