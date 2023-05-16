@@ -1,10 +1,9 @@
 <template>
-    <!-- <UserRegisterTable /> -->
-    <!-- <MedicineRegisterTable/> -->
-    <!-- <SalesBarChart /> -->
-    <!-- <MedicineTraceTable />   -->
-    <!-- <AdminTable /> -->
-    <ProducerForm />
+    <UserRegisterTable />
+    <MedicineRegisterTable/>
+    <SalesBarChart />
+    <MedicineTraceTable />  
+    <AdminTable />
 </template>
 <script lang="ts" setup>
 import MedicineTraceTable from '../HomeView/MedicineTraceTable.vue';
