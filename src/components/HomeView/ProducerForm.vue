@@ -28,7 +28,7 @@
                       type="date"
                       placeholder="选择日期"
                       v-model="formData.produceTime"
-                      value-format="yyyy-MM-dd"
+                      value-format="YYYY-MM-DD"
                       style="width: 100%;"
                   ></el-date-picker>
               </el-col>
@@ -39,7 +39,7 @@
                       type="date"
                       placeholder="选择日期"
                       v-model="formData.validityTime"
-                      value-format="yyyy-MM-dd"
+                      value-format="YYYY-MM-DD"
                       style="width: 100%;"
                   ></el-date-picker>
               </el-col>
@@ -69,7 +69,7 @@
               <el-input v-model="formData.transName"></el-input>
           </el-form-item>
           <el-form-item>
-              <el-button type="primary" >确认上链</el-button>
+              <el-button type="primary" @click="submitHandle" >确认上链</el-button>
               <el-button type='warning'>取消</el-button>
           </el-form-item>
         </el-form>
@@ -79,7 +79,9 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, onBeforeMount } from 'vue'
+import axios from 'axios'
+import { ElMessage } from 'element-plus'
 
 const formData = reactive({
   medicineName: '',
@@ -97,10 +99,34 @@ const formData = reactive({
   producerCount: '',
   transName: '',
 })
+
+function submitHandle() {
+  console.log(formData.produceTime.substring(0,10))
+  axios.post("http://175.178.68.139:8888/producer/produce", 
+    { medicineName: formData.medicineName, batch: formData.medicineNumber, medicineCompany:formData.producerName, 
+      medicineLicenceNumber: formData.approvalNumber, specification: formData.packageSize, material: formData.ingredient,
+      productionAddress: formData.producerAddress, batchNum: formData.producerCount, selloutAddress: formData.transName,
+      responsiblePerson: formData.producerTel, productionDate: formData.produceTime.substring(0,10), expireDate: formData.validityTime.substring(0,19), 
+      producerId: formData.producerName, remark: formData.producerRemark})
+    .then(function(response) {
+      console.log(response.data)
+      if (response.data.code == '200') {
+        ElMessage({
+          message: '上链成功',
+          type:    'success'
+        }) 
+      } else {
+        ElMessage({
+          message: '上链失败',
+          type : 'error'
+        })
+      }
+    })
+}
 </script>
 
 <style>
 .formBox {
-  height: 1000px;
+
 }
 </style>

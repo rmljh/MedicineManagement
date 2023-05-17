@@ -10,10 +10,10 @@ export default defineConfig({
     vue(),
     Icons({ compiler: 'vue3' , autoInstall: true}),
     vueJsx(),
-    viteMockServe({
-      mockPath: "./src/mock/",
-      localEnabled: true,
-    })
+    // viteMockServe({
+    //   mockPath: "./src/mock/",
+    //   localEnabled: false,
+    // })
   ],
   resolve: {
     alias: {
@@ -21,9 +21,10 @@ export default defineConfig({
     }
   },
   server:{
+    host: '0.0.0.0'	,
     proxy: { 
       '/api': {
-        target: "http://175.178.175.106:8080",
+        target: "http://175.178.68.139:8888",
         // target: "http://localhost:8080",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
