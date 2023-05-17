@@ -28,6 +28,21 @@ const router = createRouter({
           name: 'medicinetrace',
           component: () => import('@/components/HomeView/MedicineTraceTable.vue'),
         },
+        {
+          path: '/medicinesearch',
+          name: 'medicinesearch',
+          component: () => import('@/components/HomeView/AdminTable.vue'),
+        },
+        {
+          path: '/medicinemanage',
+          name: 'medicinemanege',
+          component: () => import('@/components/HomeView/MedicineRegisterTable.vue'),
+        },
+        {
+          path: '/medicineup',
+          name: 'medicineup',
+          component: () => import('@/components/HomeView/ProducerForm.vue'),
+        },
       ]
     },
     {
