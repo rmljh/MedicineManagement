@@ -25,7 +25,7 @@
                   <DetailButton v-if="medicineId != ''" @click="detailHandle" />
                 </el-col>
                 <el-col :span="12">
-                  <BuyButton />
+                  <BuyButton v-if="medicineId != ''" @click="buyHandle"/>
                 </el-col>
               </el-row>
             </template>
@@ -118,7 +118,7 @@
   </div>
   <!-- 购买弹窗 -->
   <div class="buyBox">
-    <el-dialog width="50%" title="药品上链详情" v-model="buyDialog.buyDialogFlag" :modal='false' center :show-close="false">
+    <el-dialog width="50%" title="药品上链详情" v-model="buyDialog.buyDialogFlag" :modal='false' center :show-close="false" height="100%">
       <el-container>
         <el-main>
           <div class="container">
@@ -131,18 +131,45 @@
                   <el-input v-model="buyDialog.buyForm.MedicineId" ></el-input>
                 </el-form-item>
                 <el-form-item label="法人姓名">
-                  <el-input v-model="buyDialog.buyForm.MedicineId" ></el-input>
+                  <el-input v-model="buyDialog.buyForm.FranchiserLegalPerson" ></el-input>
                 </el-form-item>
                 <el-form-item label="药品类型">
                   <el-input v-model="buyDialog.buyForm.MedicineType" ></el-input>
                 </el-form-item>
+                <el-form-item label="购买数量">
+                  <el-input v-model="buyDialog.buyForm.MedicineAmount" ></el-input>
+                </el-form-item>
+                <el-form-item label="购买价格">
+                  <el-input v-model="buyDialog.buyForm.MedicinePrice" ></el-input>
+                </el-form-item>
+                <el-form-item label="收货地址">
+                  <el-input v-model="buyDialog.buyForm.ReceiptAddress" ></el-input>
+                </el-form-item>
+                <el-form-item label="收货时间">
+                  <el-input v-model="buyDialog.buyForm.ReceiptTime" ></el-input>
+                </el-form-item>
+                <el-form-item label="负责人姓名">
+                  <el-input v-model="buyDialog.buyForm.PersonLiableName" ></el-input>
+                </el-form-item>
+                <el-form-item label="负责人电子邮件">
+                  <el-input v-model="buyDialog.buyForm.PersonLiableEmail" ></el-input>
+                </el-form-item>
+                <el-form-item label="负责人联系电话">
+                  <el-input v-model="buyDialog.buyForm.PersonLiableTel" ></el-input>
+                </el-form-item>
+                <el-form-item label="备注">
+                  <el-input v-model="buyDialog.buyForm.Remark" ></el-input>
+                </el-form-item>
+                <el-form-item label="时间">
+                  <el-input v-model="buyDialog.buyForm.Time" ></el-input>
+                </el-form-item>
                 <el-form-item>
                   <el-col :span="9"></el-col>
                   <el-col :span="4">
-                    <el-button type="danger">冻结</el-button>
+                    <el-button type='warning' @click="buyDialogBuyHandle">购买</el-button>
                   </el-col>
                   <el-col :span="4">
-                    <el-button type='primary' @click="detailDialogBackHandle">返回</el-button>
+                    <el-button type='primary' @click="buyDialogBackHandle">返回</el-button>
                   </el-col>
                 </el-form-item>
               </el-form>
@@ -160,6 +187,7 @@ import { onBeforeMount, reactive } from 'vue'
 import DetailButton from '../Button/DetailButton.vue';
 import BuyButton from '../Button/BuyButton.vue';
 import axios from 'axios';
+import { ElMessage } from 'element-plus';
 const pageInfo = reactive({
   AdminTable: [
     {
@@ -176,7 +204,6 @@ const pageInfo = reactive({
       salePrice: "",
       packingFirm: "",
       selloutAddress: "",
-      receiver_address: "",
       responsiblePerson: "",
       remark: "",
       approval: "",
@@ -189,6 +216,7 @@ const pageInfo = reactive({
   currentMedicineId: "",
   currentQRcodeSrc: '',
   currentMedicineBatch: "",
+  currentFromAddress: "",
   nowTime:'',
 })
 
@@ -219,8 +247,8 @@ const buyDialog = reactive({
 const detailDialog = reactive({
   detailDiaFlag: false,
   detailForm: {
-    medicineId: "1",
-    medicineName: "123",
+    medicineId: "",
+    medicineName: "",
     medicineCompany: "",
     medicineLicenceNumber: "",
     specification: "",
@@ -250,6 +278,7 @@ onBeforeMount(() => {
 function getCurrentRow(currentRow) {
   pageInfo.currentMedicineId = currentRow.medicineId
   pageInfo.currentMedicineBatch = currentRow.batch
+  pageInfo.currentFromAddress = currentRow.selloutAddress
 }
 
 function getMedicineTable() {
@@ -267,6 +296,26 @@ function detailHandle() {
       detailDialog.detailForm = pageInfo.AdminTable[i]
     }
   }
+}
+
+function buyHandle() {
+  buyDialog.buyDialogFlag = true;
+}
+
+function buyDialogBackHandle() {
+  buyDialog.buyDialogFlag = false;
+}
+
+function buyDialogBuyHandle() {
+  axios.post('http://175.178.68.139:8888/sell',{Id:buyDialog.buyForm.Id,MedicineId:pageInfo.currentMedicineId,FranchiserName:buyDialog.buyForm.FranchiserName,BusinessCertificate:buyDialog.buyForm.BusinessCertificate,FranchiserLegalPerson:buyDialog.buyForm.FranchiserLegalPerson,MedicineType:buyDialog.buyForm.MedicineType,MedicineBatch:pageInfo.currentMedicineBatch,MedicineAmount:buyDialog.buyForm.MedicineAmount,MedicinePrice:buyDialog.buyForm.MedicinePrice,FromAddress:pageInfo.currentFromAddress,DeliveryTime:buyDialog.buyForm.DeliveryTime,ReceiptAddress:buyDialog.buyForm.ReceiptAddress,ReceiptTime:buyDialog.buyForm.ReceiptTime,PersonLiableName:buyDialog.buyForm.PersonLiableName,PersonLiableEmail:buyDialog.buyForm.PersonLiableEmail,PersonLiableTel:buyDialog.buyForm.PersonLiableTel,Remark:buyDialog.buyForm.Remark,Time:buyDialog.buyForm.Time})
+    .then(function(res){
+      console.log(res.data.msg)
+    })
+  ElMessage({
+    message: '成功购买',
+    type: 'success'
+  })
+  getMedicineTable()
 }
 
 function QRcodeApplyHandle() {
